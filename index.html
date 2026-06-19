@@ -2,44 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AstraControl-X | Tactical Command</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstraControl-X | Strategic Command</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="dashboard-grid">
         <aside class="sidebar">
             <div class="brand">ASTRACONTROL-X</div>
-            <div class="nav-item active">TACTICAL</div>
-            <div class="nav-item">TELEMETRY</div>
-            <div class="nav-item">WARFARE</div>
-            <div class="nav-item">LOGS</div>
+            <nav class="nav-list">
+                <div class="nav-item active">TACTICAL</div>
+                <div class="nav-item">TELEMETRY</div>
+                <div class="nav-item">WARFARE</div>
+                <div class="nav-item">LOGS</div>
+            </nav>
         </aside>
         
         <header class="header">
-            <h2>TACTICAL COMMAND CONSOLE: LRLACM-01</h2>
-            <div id="clock">10:33:10 UTC</div>
+            <h2 class="console-title">LRLACM-01 // COMMAND CONSOLE</h2>
+            <div id="system-clock">SYNC: 100%</div>
         </header>
 
-        <main class="main-view">
+        <main class="main-content">
             <div class="widget" id="telemetry">
-                <h3>TELEMETRY STREAM</h3>
+                <h3>LIVE TELEMETRY FEED</h3>
                 <canvas id="waveform"></canvas>
             </div>
-            <div class="widget" id="map">
+            <div class="widget" id="orbital-map">
                 <h3>ORBITAL_VECTOR_MAP</h3>
+                <div class="map-placeholder"></div>
             </div>
         </main>
 
         <section class="right-panel">
-            <div class="widget" id="threat">
+            <div class="widget" id="threat-matrix">
                 <h3>THREAT MATRIX</h3>
                 <div class="grid-matrix" id="matrix"></div>
             </div>
         </section>
 
-        <footer class="system-logs">
-            <h3>SYSTEM LOGS</h3>
-            <div id="log-container"></div>
+        <footer class="logs-container">
+            <h3>SYSTEM EVENT LOGS</h3>
+            <div id="log-feed"></div>
         </footer>
     </div>
     <script src="app.js"></script>
