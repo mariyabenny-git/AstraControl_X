@@ -1,35 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Threat Matrix
-    const matrix = document.getElementById('matrix');
-    for(let i=0; i<16; i++) {
-        const div = document.createElement('div');
-        div.className = 'cell ' + (Math.random() > 0.8 ? 'threat' : '');
-        matrix.appendChild(div);
-    }
-
-    // 2. Initialize Telemetry Waveform
+    // Waveform
     const canvas = document.getElementById('waveform');
     const ctx = canvas.getContext('2d');
-    function animateWave() {
+    function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = '#39ff14';
-        ctx.lineWidth = 2;
         ctx.beginPath();
         for(let i=0; i<canvas.width; i++) {
-            ctx.lineTo(i, 50 + Math.sin(i*0.05 + Date.now()*0.005) * 20);
+            ctx.lineTo(i, 100 + Math.sin(i*0.02 + Date.now()*0.005) * 40);
         }
         ctx.stroke();
-        requestAnimationFrame(animateWave);
+        requestAnimationFrame(draw);
     }
-    animateWave();
+    draw();
 
-    // 3. Simulated Event Logs (MCP-Ready Data)
-    const logFeed = document.getElementById('log-feed');
-    const logData = ["SYS_INIT: OK", "UPLINK: STABLE", "THREAT_DETECTED: SEC_07", "AI_ADVISORY: ENGAGE"];
+    // Matrix
+    const grid = document.getElementById('matrix-grid');
+    for(let i=0; i<16; i++) {
+        const d = document.createElement('div');
+        d.className = 'cell ' + (Math.random() > 0.7 ? 'alert' : '');
+        grid.appendChild(d);
+    }
+
+    // Logs
+    const feed = document.getElementById('log-feed');
     setInterval(() => {
         const p = document.createElement('p');
-        p.innerText = `[${new Date().toLocaleTimeString()}] ${logData[Math.floor(Math.random()*logData.length)]}`;
-        logFeed.prepend(p);
-        if(logFeed.children.length > 20) logFeed.lastChild.remove();
+        p.innerText = `[${new Date().toLocaleTimeString()}] >> NODE_ID: 0x${Math.random().toString(16).slice(2,8)} :: SECURE`;
+        feed.prepend(p);
     }, 2000);
 });
