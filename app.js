@@ -1,32 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Generate Threat Matrix
+    // 1. Initialize Threat Matrix
     const matrix = document.getElementById('matrix');
     for(let i=0; i<16; i++) {
         const div = document.createElement('div');
-        div.className = 'cell ' + (Math.random() > 0.7 ? 'active' : '');
+        div.className = 'cell ' + (Math.random() > 0.8 ? 'threat' : '');
         matrix.appendChild(div);
     }
 
-    // Generate Massive Logs (Simulating high-data ingestion)
-    const logs = document.getElementById('log-container');
-    for(let i=0; i<100; i++) {
-        const p = document.createElement('p');
-        p.innerText = `[${1200+i}] NODE_SYNC_SUCCESS :: ID:0x${Math.random().toString(16).slice(2,8)}`;
-        logs.appendChild(p);
-    }
-
-    // Dynamic Waveform
+    // 2. Initialize Telemetry Waveform
     const canvas = document.getElementById('waveform');
     const ctx = canvas.getContext('2d');
-    function draw() {
+    function animateWave() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = '#39ff14';
+        ctx.lineWidth = 2;
         ctx.beginPath();
         for(let i=0; i<canvas.width; i++) {
-            ctx.lineTo(i, 75 + Math.sin(i*0.05 + Date.now()*0.01) * 30);
+            ctx.lineTo(i, 50 + Math.sin(i*0.05 + Date.now()*0.005) * 20);
         }
         ctx.stroke();
-        requestAnimationFrame(draw);
+        requestAnimationFrame(animateWave);
     }
-    draw();
+    animateWave();
+
+    // 3. Simulated Event Logs (MCP-Ready Data)
+    const logFeed = document.getElementById('log-feed');
+    const logData = ["SYS_INIT: OK", "UPLINK: STABLE", "THREAT_DETECTED: SEC_07", "AI_ADVISORY: ENGAGE"];
+    setInterval(() => {
+        const p = document.createElement('p');
+        p.innerText = `[${new Date().toLocaleTimeString()}] ${logData[Math.floor(Math.random()*logData.length)]}`;
+        logFeed.prepend(p);
+        if(logFeed.children.length > 20) logFeed.lastChild.remove();
+    }, 2000);
 });
