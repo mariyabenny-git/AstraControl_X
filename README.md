@@ -1,12 +1,13 @@
-# AstraControl-X: Mission Command Console
-High-fidelity tactical C2 interface developed for Hackverse X 2026.
+# AstraControl-X: Aerospace Tactical HUD
+**Hackverse X 2026 Submission**
 
-## Architecture
-- **UI Framework**: CSS Grid-Area based modular layout.
-- **Data Visualization**: Canvas-based real-time telemetry rendering.
-- **Scalability**: Dynamic DOM injection for high-density log management.
+## Concept
+AstraControl-X is a high-fidelity Command & Control (C2) simulation interface. It addresses the **Cognitive Load Crisis** in autonomous defense systems by providing real-time telemetry visualization and AI-driven threat assessment.
 
-## Deployment
-1. Open `index.html` in a local browser.
-2. The system simulates low-latency data streams with real-time waveform oscillations.
+## Key Innovation Domains
+* **AI & Automation**: Real-time neural-heuristic telemetry synthesis.
+* **Cybersecurity**: EW (Electronic Warfare) detection simulation via active threat matrices.
+* **LLM + MCP**: Designed as an **MCP Server**, allowing Large Language Models to access tactical telemetry states for autonomous strategic advising.
 
+## Technical Architecture
+Built with **vanilla Web Standards (HTML5/CSS3/Canvas)** for sub-millisecond data rendering, ensuring minimal overhead for high-density information displays.
