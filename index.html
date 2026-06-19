@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AstraControl-X | C2 Platform</title>
+    <title>AstraControl-X | Hackverse X 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header><h1>ASTRACONTROL-X: LRLACM C2 SIMULATOR</h1></header>
-    <div class="grid-container">
-        <div class="card" id="widget-telemetry">
+    <main class="grid-container">
+        <section class="card" id="widget-telemetry">
             <h3>3D TELEMETRY GRID</h3>
-            <div id="telemetry-data">Initializing...</div>
-        </div>
-        <div class="card" id="widget-engine">
+            <div id="telemetry-data">Initializing sensor link...</div>
+        </section>
+        <section class="card" id="widget-engine">
             <h3>MANIK ENGINE DIAGNOSTICS</h3>
             <canvas id="engineCanvas"></canvas>
-        </div>
-        <div class="card" id="widget-cyber">
+        </section>
+        <section class="card" id="widget-cyber">
             <h3>CYBERSECURITY SHIELD</h3>
-            <div id="cyber-status">Status: SECURE</div>
-            <button onclick="toggleJamming()">SIMULATE JAMMING</button>
-        </div>
-        <div class="card" id="widget-ai">
-            <h3>AI STRATEGIC ADVISOR</h3>
+            <div id="cyber-status" class="status-pill">SECURE</div>
+            <button onclick="toggleJamming()">INITIATE EW COUNTER-MEASURE</button>
+        </section>
+        <section class="card" id="widget-ai">
+            <h3>AI STRATEGIC ADVISOR (MLP ENGINE)</h3>
             <p id="ai-advice">System Standby...</p>
-        </div>
-    </div>
+        </section>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
