@@ -1,40 +1,32 @@
-const telemetryDiv = document.getElementById('telemetry-data');
-const aiAdvice = document.getElementById('ai-advice');
-const cyberStatus = document.getElementById('cyber-status');
-const canvas = document.getElementById('engineCanvas');
-const ctx = canvas.getContext('2d');
-
-let state = { alt: 500, speed: 0.7, fuel: 100, jamming: false };
-
-function drawEngineWave() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#39ff14';
-    ctx.beginPath();
-    for(let i=0; i<canvas.width; i++) {
-        ctx.lineTo(i, 50 + Math.sin(i*0.1 + Date.now()*0.01) * 20);
+document.addEventListener('DOMContentLoaded', () => {
+    // Generate Threat Matrix
+    const matrix = document.getElementById('matrix');
+    for(let i=0; i<16; i++) {
+        const div = document.createElement('div');
+        div.className = 'cell ' + (Math.random() > 0.7 ? 'active' : '');
+        matrix.appendChild(div);
     }
-    ctx.stroke();
-}
 
-function updateSimulation() {
-    state.alt = Math.max(15, state.alt - Math.random() * 2);
-    state.fuel = Math.max(0, state.fuel - 0.1);
-    
-    telemetryDiv.innerHTML = `SPEED: MACH ${state.speed}<br>ALTITUDE: ${state.alt.toFixed(2)} M<br>FUEL: ${state.fuel.toFixed(1)} %`;
-    
-    // MLP-Heuristic Decision Logic
-    let threatScore = (state.jamming ? 0.7 : 0) + (state.alt < 50 ? 0.2 : 0);
-    aiAdvice.innerText = threatScore > 0.6 
-        ? "CRITICAL: Threat Probability High. Evasive Maneuver Required." 
-        : "SYSTEM: Flight parameters nominal.";
-        
-    drawEngineWave();
-}
+    // Generate Massive Logs (Simulating high-data ingestion)
+    const logs = document.getElementById('log-container');
+    for(let i=0; i<100; i++) {
+        const p = document.createElement('p');
+        p.innerText = `[${1200+i}] NODE_SYNC_SUCCESS :: ID:0x${Math.random().toString(16).slice(2,8)}`;
+        logs.appendChild(p);
+    }
 
-function toggleJamming() {
-    state.jamming = !state.jamming;
-    cyberStatus.className = state.jamming ? "status-pill alert" : "status-pill";
-    cyberStatus.innerText = state.jamming ? "THREAT DETECTED" : "SECURE";
-}
-
-setInterval(updateSimulation, 500);
+    // Dynamic Waveform
+    const canvas = document.getElementById('waveform');
+    const ctx = canvas.getContext('2d');
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#39ff14';
+        ctx.beginPath();
+        for(let i=0; i<canvas.width; i++) {
+            ctx.lineTo(i, 75 + Math.sin(i*0.05 + Date.now()*0.01) * 30);
+        }
+        ctx.stroke();
+        requestAnimationFrame(draw);
+    }
+    draw();
+});
