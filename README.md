@@ -1,5 +1,4 @@
 # AstraControl-X: Aerospace Tactical HUD
-**Hackverse X 2026 Submission**
 
 ## Concept
 AstraControl-X is a high-fidelity Command & Control (C2) simulation interface. It addresses the **Cognitive Load Crisis** in autonomous defense systems by providing real-time telemetry visualization and AI-driven threat assessment.
